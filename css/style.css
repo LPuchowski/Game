@@ -1,0 +1,67 @@
+body {
+  font-family: fantasy;
+  text-align: center;
+  margin: 100px auto
+}
+
+.container {
+  width:600px;
+  height:300px;
+  margin: 10% auto;
+  background: #999;
+  border-radius: 1em;
+  position: relative;
+}
+
+#ball {
+  height:30px;
+  width:30px;
+  background: lime;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+#btn {
+  font-size: 1.5em;
+  padding:.5em 1.5em;
+  background: none;
+  border-radius: 1.5em;
+  border: 2px solid #999;
+  color:#999;
+  transition: .2s;
+  outline: none;
+}
+#btn:hover {
+  background: #999;
+  color: white;
+  border: 2px solid #999;
+}
+#btn:active {
+  background: #666;
+  color: white;
+  border: 2px solid #666;
+}
+
+/* #pads {
+  display: flex;
+  justify-content: space-between;
+} */
+
+#pad {
+  height: 60px;
+  width: 25px;
+  position: absolute;
+  background: red;
+}
+
+#pad2 {
+  height: 60px;
+  width: 25px;
+  position: absolute;
+  left: 575px;
+  background: blue;
+}
