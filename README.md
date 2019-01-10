@@ -32,7 +32,7 @@ The functionality has been implemented using the following features:
 - jQuery
 
 ## Issues
-The key issues faced during development was the use of loops or any other forms of recurssion inside a setInterval(); function causing it to not run properly and all code inside the function would not be ran by the application.
+The key issue faced during development was the use of loops or any other forms of recurssion inside a setInterval(); function causing it to not run properly and all code inside the function would not be ran by the application.
 
 To get around this issue, I had to ensure that there was no form of recurssion inside the function and had to use alternative methods to create functionality such as conditional statements which were useful as the function is already be recursive and would check the statements at every interval.
 
