@@ -153,9 +153,9 @@ $(function(){
 
   $("#tournament").click(function(){
     tournament = true;
-    var players = prompt("How many players? Please enter an even number");
-    while (!(players === 0 || (players && !(players%2)))) {
-      players = prompt("You need to enter an even number. How many players?");
+    var players = prompt("How many players? Please enter: 2, 4, 8 or 16");
+    while (players != 2 && players != 4 && players != 8 && players != 16) {
+      players = prompt("You need to enter either: 2, 4, 8 or 16. How many players?");
     }
     playerArray = new Array(parseInt(players));
 
@@ -246,9 +246,9 @@ $(function(){
         }
 
         if (player2 == "Computer") {
-          if (paddle2Top > ballTop - 8) {
+          if (paddle2Top > ballTop - 9) {
             pad2posy -= 3;
-          } else if (paddle2Top < ballTop + 8) {
+          } else if (paddle2Top < ballTop + 9) {
             pad2posy += 3;
           }
         } else {
