@@ -174,13 +174,13 @@ $(function(){
     playerArray[player2-1] = null;
 
     var count = 0;
-
-    alert("First match is Player " + player1 + " vs Player " + player2);
-
     scoreCap = 0;
     while (scoreCap < 3 || scoreCap > 9) {
       scoreCap = prompt("Please enter the number of points needed to win (3 minimum, 9 maximum)");
     }
+
+    alert("First match is Player " + player1 + " vs Player " + player2);
+
     scoreCap = parseInt(scoreCap);
 
     playGame(player1, player2);
