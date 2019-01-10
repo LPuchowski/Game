@@ -1,16 +1,31 @@
 body {
-  font-family: fantasy;
+  font-family: "Press Start 2P";
+  background-color: gainsboro;
   text-align: center;
-  margin: 2%;
+  position: fixed;
+  margin-left: 22%;
+}
+
+h1 {
+  font-size: 60px;
 }
 
 .container {
-  width:600px;
+  width:700px;
   height:300px;
-  margin: 10% auto;
+  margin-top: 50px;
+  margin-bottom: 25px;
+  margin-left: 9%;
+  /* margin-right: 35%; */
   background: #999;
   border-radius: 1em;
   position: relative;
+}
+
+#container {
+  background-image: url('../images/court.png');
+  background-repeat: no-repeat;
+  background-size: 700px 300px;
 }
 
 #ball {
@@ -24,6 +39,27 @@ body {
 
 .btn-container {
   text-align: center;
+}
+
+#single {
+  font-size: 1.5em;
+  padding:.5em 1.5em;
+  background: none;
+  border-radius: 1.5em;
+  border: 2px solid #999;
+  color:#999;
+  transition: .2s;
+  outline: none;
+}
+#single:hover {
+  background: #999;
+  color: white;
+  border: 2px solid #999;
+}
+#single:active {
+  background: #666;
+  color: white;
+  border: 2px solid #666;
 }
 
 #btn {
@@ -84,6 +120,6 @@ body {
   height: 60px;
   width: 25px;
   position: absolute;
-  left: 575px;
+  left: 675px;
   background: blue;
 }

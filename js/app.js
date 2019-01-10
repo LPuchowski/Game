@@ -44,6 +44,8 @@ $(function(){
   var playerArray;
   var round1Winners;
   var t1finished = false;
+  var speed = 2;
+  var scoreCap = 0;
 
   Array.prototype.allValuesSame = function() {
 
@@ -92,6 +94,29 @@ $(function(){
     }
   });
 
+  $("#single").click(function(){
+    while(paddle1Color != "1" && paddle1Color != "2" && paddle1Color != "3" && paddle1Color != "4" && paddle1Color != "5") {
+      var paddle1Color = prompt("Player 1, choose your paddle colour: 1) Red, 2) Yellow, 3) Blue, 4) Orange, 5) Purple");
+    }
+
+    switch (paddle1Color) {
+      case "1": paddle1Color = "Red"; break;
+      case "2": paddle1Color = "Yellow"; break;
+      case "3": paddle1Color = "Blue"; break;
+      case "4": paddle1Color = "Orange"; break;
+      case "5": paddle1Color = "Purple"; break;
+      default: break;
+    }
+    paddle.css("backgroundColor", paddle1Color);
+    scoreCap = 0;
+    while (scoreCap < 3 || scoreCap > 9) {
+      scoreCap = prompt("Please enter the number of points needed to win (3 minimum, 9 maximum)");
+    }
+    scoreCap = parseInt(scoreCap);
+    playGame("1", "Computer");
+
+  })
+
   $("#btn").click(function(){
     while(paddle1Color != "1" && paddle1Color != "2" && paddle1Color != "3" && paddle1Color != "4" && paddle1Color != "5") {
       var paddle1Color = prompt("Player 1, choose your paddle colour: 1) Red, 2) Yellow, 3) Blue, 4) Orange, 5) Purple");
@@ -117,6 +142,11 @@ $(function(){
     }
     paddle.css("backgroundColor", paddle1Color);
     paddle2.css("backgroundColor", paddle2Color);
+    scoreCap = 0;
+    while (scoreCap < 3 || scoreCap > 9) {
+      scoreCap = prompt("Please enter the number of points needed to win (3 minimum, 9 maximum)");
+    }
+    scoreCap = parseInt(scoreCap);
     playGame("1", "2");
     counter = 0;
   })
@@ -147,44 +177,13 @@ $(function(){
 
     alert("First match is Player " + player1 + " vs Player " + player2);
 
-    var win = playGame(player1, player2);
-
-    if (roundCount > 1) {
-      filtered = filtered.filter(function (el) {
-        return el != null;
-      });
-    } else {
-      filtered = playerArray.filter(function (el) {
-        return el != null;
-      });
+    scoreCap = 0;
+    while (scoreCap < 3 || scoreCap > 9) {
+      scoreCap = prompt("Please enter the number of points needed to win (3 minimum, 9 maximum)");
     }
+    scoreCap = parseInt(scoreCap);
 
-    player1 = random_player(filtered);
-    filtered[filtered.indexOf(player1)] = null;
-    filtered = filtered.filter(function (el) {
-      return el != null;
-    });
-    player2 = random_player(filtered);
-    winner = null;
-
-    if (playerArray.allValuesSame()){
-      alert("Round " + roundCount + " Finished!");
-      alert("Winners of Round " + roundCount + " are: " + round1Winners);
-      count = 0;
-      roundCount++;
-      playerArray = round1Winners;
-      player1 = random_player(playerArray);
-      playerArray[playerArray.indexOf(player1)] = null;
-      filtered = playerArray.filter(function (el) {
-        return el != null;
-      });
-      player2 = random_player(filtered);
-      playerArray[playerArray.indexOf(player2)] = null;
-      filtered = playerArray.filter(function (el) {
-        return el != null;
-      });
-      roundBegin = true;
-    }
+    playGame(player1, player2);
   })
 
   function random_player(players) {
@@ -246,23 +245,32 @@ $(function(){
           }
         }
 
-        if (up2) {
-          if (pad2posy >= 3) {
+        if (player2 == "Computer") {
+          if (paddle2Top > ballTop - 8) {
             pad2posy -= 3;
+          } else if (paddle2Top < ballTop + 8) {
+            pad2posy += 3;
+          }
+        } else {
+          if (up2) {
+            if (pad2posy >= 3) {
+              pad2posy -= 3;
+            }
+          }
+
+          if (down2) {
+            if (pad2posy <= 239) {
+              pad2posy += 3;
+            }
           }
         }
 
-        if (down2) {
-          if (pad2posy <= 239) {
-            pad2posy += 3;
-          }
-        }
 
         // Ball movement
         if (directionX === "+") {
-          posX+=4;
+          posX = posX + speed;
         } else if (directionX === "-") {
-          posX-=4;
+          posX = posX - speed;
         }
 
         if (directionY === "+") {
@@ -288,6 +296,9 @@ $(function(){
 
         if (ballLeft <= paddleRight && ballTop < paddleBottom && ballBottom > paddleTop) {
           directionX = "+";
+          if (speed != 8) {
+            speed+=0.25;
+          }
         }
 
         if (ballTop == paddle2Top) {
@@ -295,21 +306,30 @@ $(function(){
 
         if (ballRight >= paddle2Left && ballTop < paddle2Bottom && ballBottom > paddle2Top) {
           directionX = "-";
+          if (speed != 8) {
+            speed+=0.25;
+          }
         }
 
         if (ballRight > containerRight) {
           score1++;
+          speed = 2;
           $("#scr1").html("Score 1: " + score1);
-          posX = 550;
+          posX = 650;
           posY = 0;
           directionX = "-";
           directionY = "+";
           gravity = 0.05;
           gravityspeed = 0;
+          up2 = false;
+          up = false;
+          down2 = false;
+          down = false;
         }
 
         if (ballLeft < containerLeft) {
           score2++;
+          speed = 2;
           $("#scr2").html("Score 2: " + score2);
           posX = 25;
           posY = 0;
@@ -317,16 +337,29 @@ $(function(){
           directionY = "+";
           gravity = 0.05;
           gravityspeed = 0;
+          up2 = false;
+          up = false;
+          down2 = false;
+          down = false;
         }
 
-        if(score1 == 1 || score2 == 1) {
-          if (score1 == 1) {
+        if(score1 == scoreCap || score2 == scoreCap) {
+          if (score1 == scoreCap) {
             winner = player1;
           } else {
             winner = player2;
           }
           score1 = 0;
           score2 = 0;
+          padposy = 0;
+          pad2posy = 0;
+          paddle.css({
+            "top": padposy
+          })
+
+          paddle2.css({
+            "top": pad2posy
+          })
           $("#scr1").html("Score 1: " + score1);
           $("#scr2").html("Score 2: " + score2);
           alert("The winner is Player " + winner);
@@ -385,10 +418,21 @@ $(function(){
           } else {
             posX = 25;
             posY = 0;
+            padposy = 0;
+            pad2posy = 0;
             ball.css({
               "left": posX + "px",
               "top": posY + "px"
             })
+            paddle.css({
+              "top": padposy
+            })
+
+            paddle2.css({
+              "top": pad2posy
+            })
+            paddle.css("backgroundColor", "red");
+            paddle2.css("backgroundColor", "blue");
             clearInterval(interval);
           }
         }
