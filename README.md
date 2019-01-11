@@ -13,6 +13,16 @@ Each player's score will increment each time a goal is scored and the game will 
 
 The game operates by the player(s) operating the paddles on either side of the court.
 
+Controls for the game are:
+
+Player 1 up - W
+
+Player 1 down - S
+
+Player 2 up - Up key
+
+Player 2 down - Down key
+
 When the ball makes contact with the paddles it will change direction and move the opposite way.
 
 If the ball makes it past one of the paddles and makes contact with wither side of the container the player on the opposite side has their score incremented by one.

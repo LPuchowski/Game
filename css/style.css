@@ -3,8 +3,8 @@ body {
   background-color: gainsboro;
   text-align: center;
   position: fixed;
-  margin-left: 22%;
-  margin-right: 22%;
+  margin-left: 9%;
+  /* margin-right: 22%; */
 }
 
 h1 {
@@ -16,7 +16,7 @@ h1 {
   height:300px;
   margin-top: 50px;
   margin-bottom: 25px;
-  margin-left: 9%;
+  /* margin-left: 9%; */
   /* margin-right: 35%; */
   background: #999;
   border-radius: 1em;
@@ -47,10 +47,12 @@ h1 {
   padding:.5em 1.5em;
   background: none;
   border-radius: 1.5em;
-  border: 2px solid #999;
-  color:#999;
+  border: 2px solid black;
+  color: black;
   transition: .2s;
   outline: none;
+  font-family: "Press Start 2P";
+  font-size: 16px;
 }
 #single:hover {
   background: #999;
@@ -68,10 +70,12 @@ h1 {
   padding:.5em 1.5em;
   background: none;
   border-radius: 1.5em;
-  border: 2px solid #999;
-  color:#999;
+  border: 2px solid black;
+  color: black
   transition: .2s;
   outline: none;
+  font-family: "Press Start 2P";
+  font-size: 16px;
 }
 #btn:hover {
   background: #999;
@@ -89,10 +93,12 @@ h1 {
   padding:.5em 1.5em;
   background: none;
   border-radius: 1.5em;
-  border: 2px solid #999;
-  color:#999;
+  border: 2px solid black;
+  color: black;
   transition: .2s;
   outline: none;
+  font-family: "Press Start 2P";
+  font-size: 16px;
 }
 #tournament:hover {
   background: #999;
@@ -123,4 +129,40 @@ h1 {
   position: absolute;
   left: 675px;
   background: blue;
+}
+
+#game {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#controls {
+  height: 335px;
+  width: 200px;
+  border-radius: 1.5em;
+  border: 2px solid black;
+  color: black;
+  transition: .2s;
+  /* background-color: blue; */
+  margin-right: 100px;
+  text-align: center;
+}
+
+#leaderboard {
+  height: 300px;
+  width: 225px;
+  border-radius: 1.5em;
+  border: 2px solid black;
+  color: black;
+  transition: .2s;
+  margin-left: 100px;
+}
+
+.toptext {
+  margin-right: 4%;
+}
+
+.btn-container {
+  margin-right: 4%;
 }

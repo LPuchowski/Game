@@ -17,6 +17,18 @@ $(function(){
   var paddle = $("#pad");
   var paddle2 = $("#pad2");
 
+  var leader1 = document.getElementById('leader1').innerHTML;
+  var leader2 = document.getElementById('leader2').innerHTML;
+  var leader3 = document.getElementById('leader3').innerHTML;
+  var leader4 = document.getElementById('leader4').innerHTML;
+  var leader5 = document.getElementById('leader5').innerHTML;
+
+  var l1 = 0;
+  var l2 = 0;
+  var l3 = 0;
+  var l4 = 0;
+  var l5 = 0;
+
   // Set the initial position of the ball
   var posX = 25;
   var posY = 0;
@@ -37,6 +49,8 @@ $(function(){
   var score1 = 0;
   var score2 = 0;
   var winner = null;
+  var winnerScore = null;
+  var loserScore = null;
   var roundCount = 1;
   var roundBegin = false;
   var filtered = [0];
@@ -246,7 +260,11 @@ $(function(){
         }
 
         if (player2 == "Computer") {
-          if (paddle2Top > ballTop - 9) {
+          if (speed < 3.6 && paddle2Top > ballTop - 14) {
+            pad2posy -= 3;
+          } else if (speed < 3.6 && paddle2Top < ballTop + 14) {
+            pad2posy += 3;
+          } else if (paddle2Top > ballTop - 9) {
             pad2posy -= 3;
           } else if (paddle2Top < ballTop + 9) {
             pad2posy += 3;
@@ -346,8 +364,76 @@ $(function(){
         if(score1 == scoreCap || score2 == scoreCap) {
           if (score1 == scoreCap) {
             winner = player1;
+            winnerScore = score1;
+            loserScore = score2;
           } else {
             winner = player2;
+            winnerScore = score2;
+            loserScore = score1;
+          }
+          alert("The winner is Player " + winner);
+          if (winner != "Computer") {
+            if ((winnerScore/loserScore) > l1) {
+              if (leader1 != "") {
+                $("#leader5").html(leader4);
+                $("#leader4").html(leader3);
+                $("#leader3").html(leader2);
+                $("#leader2").html(leader1);
+              }
+              var lead = prompt("Enter your name for the leaderboard");
+              // leader.length = 4;
+              var leader = lead.substring(0, 7);
+              // leader1 = leader + " " + score1 + " - " + score2;
+              $("#leader1").html(leader + " " + winnerScore + " - " + loserScore);
+              l1 = winnerScore/loserScore;
+              leader1 = document.getElementById('leader1').innerHTML;
+              leader2 = document.getElementById('leader2').innerHTML;
+              leader3 = document.getElementById('leader3').innerHTML;
+              leader4 = document.getElementById('leader4').innerHTML;
+              leader5 = document.getElementById('leader5').innerHTML;
+            } else if ((winnerScore/loserScore) > l2) {
+              if (leader2 != "") {
+                $("#leader5").html(leader4);
+                $("#leader4").html(leader3);
+                $("#leader3").html(leader2);
+              }
+              var leader = prompt("Enter your name for the leaderboard");
+              // leader1 = leader + " " + score1 + " - " + score2;
+              $("#leader2").html(leader + " " + winnerScore + " - " + loserScore);
+              l2 = winnerScore/loserScore;
+              leader2 = document.getElementById('leader2').innerHTML;
+              leader3 = document.getElementById('leader3').innerHTML;
+              leader4 = document.getElementById('leader4').innerHTML;
+              leader5 = document.getElementById('leader5').innerHTML;
+            } else if ((winnerScore/loserScore) > l3) {
+              if (leader3 != "") {
+                $("#leader5").html(leader4);
+                $("#leader4").html(leader3);
+              }
+              var leader = prompt("Enter your name for the leaderboard");
+              // leader1 = leader + " " + score1 + " - " + score2;
+              $("#leader3").html(leader + " " + winnerScore + " - " + loserScore);
+              l3 = winnerScore/loserScore;
+              leader3 = document.getElementById('leader3').innerHTML;
+              leader4 = document.getElementById('leader4').innerHTML;
+              leader5 = document.getElementById('leader5').innerHTML;
+            } else if ((winnerScore/loserScore) > l4) {
+              if (leader4 != "") {
+                $("#leader5").html(leader4);
+              }
+              var leader = prompt("Enter your name for the leaderboard");
+              // leader1 = leader + " " + score1 + " - " + score2;
+              $("#leader4").html(leader + " " + winnerScore + " - " + loserScore);
+              l4 = winnerScore/loserScore;
+              leader4 = document.getElementById('leader4').innerHTML;
+              leader5 = document.getElementById('leader5').innerHTML;
+            } else if ((winnerScore/loserScore) > l5) {
+              var leader = prompt("Enter your name for the leaderboard");
+              // leader1 = leader + " " + score1 + " - " + score2;
+              $("#leader5").html(leader + " " + winnerScore + " - " + loserScore);
+              l5 = winnerScore/loserScore;
+              leader5 = document.getElementById('leader5').innerHTML;
+            }
           }
           score1 = 0;
           score2 = 0;
@@ -362,7 +448,6 @@ $(function(){
           })
           $("#scr1").html("Score 1: " + score1);
           $("#scr2").html("Score 2: " + score2);
-          alert("The winner is Player " + winner);
           if (tournament == true && winner != null) {
             round1Winners[counter] = winner;
             counter++;
