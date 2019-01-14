@@ -2,8 +2,8 @@ body {
   font-family: "Press Start 2P";
   background-color: gainsboro;
   text-align: center;
-  position: absolute;
-  margin-left: 9%;
+  position: fixed;
+  margin-left: 4%;
   margin-right: 9%;
 }
 
