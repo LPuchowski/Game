@@ -13,7 +13,6 @@ $(function(){
 
   var padposy = 0;
   var pad2posy = 0;
-
   // Target the paddles
   var paddle = $("#pad");
   var paddle2 = $("#pad2");

@@ -1,6 +1,6 @@
 # Tennis Simulation Game
 
-An web-based application that allows the simulation of a tennis style game using HTML, CSS, JavaScript and jQuery.
+A web-based application that allows the simulation of a tennis style game using HTML, CSS, JavaScript and jQuery.
 
 ## Purpose
 This web application simulates a game of tennis in the style of the game 'Pong'.
